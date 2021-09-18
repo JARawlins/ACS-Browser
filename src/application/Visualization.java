@@ -56,14 +56,17 @@ public class Visualization {
   public static Stage visualizeWindow(ObservableList<County> counties) {
     // pie charts built from the selected county(ies)
     List<PieChart> charts = buildPieCharts(counties);
+    
     // add the pie charts to the BorderPane via a HBox
     HBox chartBox = new HBox();
     for (PieChart chart : charts) {
       chartBox.getChildren().add(chart);
     }
+    
     // layout
     BorderPane root = new BorderPane();
     root.setCenter(chartBox);
+    
     // scene building
     Scene scene = new Scene(root, 800, 600);
     // add scene to stage and display
@@ -74,6 +77,7 @@ public class Visualization {
     stage.setTitle(counties.get(0).getCountyName() + ", " + counties.get(0).getState());
     stage.setScene(scene);
     stage.show();
+    
     return stage;
   }
 
@@ -84,23 +88,39 @@ public class Visualization {
    */
   private static List<PieChart> buildPieCharts(ObservableList<County> counties) {
     List<PieChart> charts = new ArrayList<PieChart>();
-    // race
-    // new list of data
+    
+    buildRacePieChart(counties, charts);
+    buildEmploymentPieChart(counties, charts);
+    buildTransportPieChart(counties, charts);
+
+    return charts;
+  }
+  
+  private static void buildRacePieChart(ObservableList<County> counties, List<PieChart> charts) {
+    // new list of data for the pie chart
     ObservableList<PieChart.Data> raceData = FXCollections.observableArrayList();
-    // create pie chart data and add it
+    
+    // populate the pie chart with data
     raceData.add(new PieChart.Data("White", counties.get(0).getWhite()));
     raceData.add(new PieChart.Data("Black", counties.get(0).getBlack()));
     raceData.add(new PieChart.Data("Asian", counties.get(0).getAsian()));
     raceData.add(new PieChart.Data("Hispanic", counties.get(0).getHispanic()));
     raceData.add(new PieChart.Data("Other", 100 - counties.get(0).getWhite()
         - counties.get(0).getBlack() - counties.get(0).getAsian() - counties.get(0).getHispanic()));
+    
     // make the pie chart
     PieChart raceChart = new PieChart(raceData);
     raceChart.setTitle("Racial/Ethnic Breakdown");
-    // prep. it for return
+    
+    // add race pie chart to the list of charts
     charts.add(raceChart);
-    // employment classification
+  }
+  
+  private static void buildEmploymentPieChart(ObservableList<County> counties, List<PieChart> charts) {
+    // list of date going into the pie chart
     ObservableList<PieChart.Data> employmentData = FXCollections.observableArrayList();
+    
+    // populate the pie chart with data
     employmentData.add(new PieChart.Data("Professional", counties.get(0).getProfessional()));
     employmentData.add(new PieChart.Data("Service", counties.get(0).getService()));
     employmentData.add(new PieChart.Data("Office", counties.get(0).getOffice()));
@@ -110,21 +130,32 @@ public class Visualization {
         100 - counties.get(0).getProfessional() - counties.get(0).getService()
             - counties.get(0).getOffice() - counties.get(0).getConstruction()
             - counties.get(0).getProduction()));
+    
+    // make the pie chart
     PieChart employmentChart = new PieChart(employmentData);
     employmentChart.setTitle("Employment Profile");
-    charts.add(employmentChart);
-    // transportation
+    
+    // add the new pie chart to the list of charts
+    charts.add(employmentChart);	  
+  }
+  
+  public static void buildTransportPieChart(ObservableList<County> counties, List<PieChart> charts) {
+    // list of data going into the pie chart
     ObservableList<PieChart.Data> transportData = FXCollections.observableArrayList();
+    
+    // populate the pie chart with data
     transportData.add(new PieChart.Data("Drive", counties.get(0).getDrive()));
     transportData.add(new PieChart.Data("Carpool", counties.get(0).getCarpool()));
     transportData.add(new PieChart.Data("Public Transit", counties.get(0).getTransit()));
     transportData.add(new PieChart.Data("Walk", counties.get(0).getWalk()));
     transportData.add(new PieChart.Data("Other", 100 - counties.get(0).getDrive()
         - counties.get(0).getCarpool() - counties.get(0).getTransit() - counties.get(0).getWalk()));
+    
+    // make the pie chart
     PieChart transportChart = new PieChart(transportData);
     transportChart.setTitle("Individuals' Primary Mode of Transportation");
-    charts.add(transportChart);
-
-    return charts;
+    
+    // add the new pie chart to the list of charts
+    charts.add(transportChart);	  
   }
 }
