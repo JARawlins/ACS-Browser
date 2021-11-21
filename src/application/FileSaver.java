@@ -58,82 +58,7 @@ public class FileSaver {
       fileWriter.append("\n");
       // iterate through every county and add each one's data
       for (County county : counties) {
-        fileWriter.append(Integer
-            .toString(ACSReader.countyToID().get(county.getCountyName() + county.getState())));
-        fileWriter.append(',');
-        fileWriter.append(county.getState());
-        fileWriter.append(',');
-        fileWriter.append(county.getCountyName());
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getTotalPop()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getMen()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getWomen()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getHispanic()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getWhite()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getBlack()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getNativePerson()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getAsian()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getPacific()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getNumVotingAge()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getIncome()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getIncomeError()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getIncomePerCapita()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getIncomePerCapitaError()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getPoverty()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getChildPoverty()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getProfessional()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getService()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getOffice()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getConstruction()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getProduction()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getDrive()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getCarpool()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getTransit()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getWalk()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getOtherTransport()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getWorkAtHome()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getMeanCommute()));
-        fileWriter.append(',');
-        fileWriter.append(Integer.toString(county.getEmployed()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getPrivateWork()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getPublicWork()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getSelfEmployed()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getFamilyWork()));
-        fileWriter.append(',');
-        fileWriter.append(Double.toString(county.getUnemployed()));
-        fileWriter.append(',');
-        fileWriter.append("\n");
+    	writeCountyToFile(county, fileWriter);
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -146,5 +71,96 @@ public class FileSaver {
         e.printStackTrace();
       }
     }
+  }
+  
+  private static void writeCountyToFile(County county, FileWriter fileWriter) {
+     try {
+		fileWriter.append(Integer
+		          .toString(ACSReader.countyToID().get(county.getCountyName() + county.getState())));
+	      fileWriter.append(',');
+	      fileWriter.append(county.getState());
+	      fileWriter.append(',');
+	      fileWriter.append(county.getCountyName());
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getTotalPop()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getMen()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getWomen()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getHispanic()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getWhite()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getBlack()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getNativePerson()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getAsian()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getPacific()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getNumVotingAge()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getIncome()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getIncomeError()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getIncomePerCapita()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getIncomePerCapitaError()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getPoverty()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getChildPoverty()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getProfessional()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getService()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getOffice()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getConstruction()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getProduction()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getDrive()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getCarpool()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getTransit()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getWalk()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getOtherTransport()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getWorkAtHome()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getMeanCommute()));
+	      fileWriter.append(',');
+	      fileWriter.append(Integer.toString(county.getEmployed()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getPrivateWork()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getPublicWork()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getSelfEmployed()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getFamilyWork()));
+	      fileWriter.append(',');
+	      fileWriter.append(Double.toString(county.getUnemployed()));
+	      fileWriter.append(',');
+	      fileWriter.append("\n");	  
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+	      try {
+	          // close-out file operations
+	          fileWriter.flush();
+	          fileWriter.close();
+	        } catch (IOException e) {
+	          e.printStackTrace();
+	        }
+	  }
   }
 }

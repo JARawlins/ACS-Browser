@@ -124,47 +124,8 @@ public class ACSReader {
               l++;
             }
           }
-          // add values to the variables of County
-          County node = new County();
-          // integers
-          node.setTotalPop(intVariables.get(1).get(rowNumber - 1));
-          node.setMen(intVariables.get(2).get(rowNumber - 1));
-          node.setWomen(intVariables.get(3).get(rowNumber - 1));
-          node.setNumVotingAge(intVariables.get(4).get(rowNumber - 1));
-          node.setIncome(intVariables.get(5).get(rowNumber - 1));
-          node.setIncomeError(intVariables.get(6).get(rowNumber - 1));
-          node.setIncomePerCapita(intVariables.get(7).get(rowNumber - 1));
-          node.setIncomePerCapitaError(intVariables.get(8).get(rowNumber - 1));
-          node.setEmployed(intVariables.get(9).get(rowNumber - 1));
-          // strings
-          node.setState(stringVariables.get(0).get(rowNumber - 1));
-          node.setCountyName(stringVariables.get(1).get(rowNumber - 1));
-          // floats
-          node.setHispanic(doubleVariables.get(0).get(rowNumber - 1));
-          node.setWhite(doubleVariables.get(1).get(rowNumber - 1));
-          node.setBlack(doubleVariables.get(2).get(rowNumber - 1));
-          node.setNativePerson(doubleVariables.get(3).get(rowNumber - 1));
-          node.setAsian(doubleVariables.get(4).get(rowNumber - 1));
-          node.setPacific(doubleVariables.get(5).get(rowNumber - 1));
-          node.setPoverty(doubleVariables.get(6).get(rowNumber - 1));
-          node.setChildPoverty(doubleVariables.get(7).get(rowNumber - 1));
-          node.setProfessional(doubleVariables.get(8).get(rowNumber - 1));
-          node.setService(doubleVariables.get(9).get(rowNumber - 1));
-          node.setOffice(doubleVariables.get(10).get(rowNumber - 1));
-          node.setConstruction(doubleVariables.get(11).get(rowNumber - 1));
-          node.setProduction(doubleVariables.get(12).get(rowNumber - 1));
-          node.setDrive(doubleVariables.get(13).get(rowNumber - 1));
-          node.setCarpool(doubleVariables.get(14).get(rowNumber - 1));
-          node.setTransit(doubleVariables.get(15).get(rowNumber - 1));
-          node.setWalk(doubleVariables.get(16).get(rowNumber - 1));
-          node.setOtherTransport(doubleVariables.get(17).get(rowNumber - 1));
-          node.setWorkAtHome(doubleVariables.get(18).get(rowNumber - 1));
-          node.setMeanCommute(doubleVariables.get(19).get(rowNumber - 1));
-          node.setPrivateWork(doubleVariables.get(20).get(rowNumber - 1));
-          node.setPublicWork(doubleVariables.get(21).get(rowNumber - 1));
-          node.setSelfEmployed(doubleVariables.get(22).get(rowNumber - 1));
-          node.setFamilyWork(doubleVariables.get(23).get(rowNumber - 1));
-          node.setUnemployed(doubleVariables.get(24).get(rowNumber - 1));
+          County node = setCountyValues(rowNumber, intVariables, stringVariables, doubleVariables); 
+          
           // map county and state name string to the unique ID in the file
           countyToID.put(node.getCountyName() + node.getState(),
               intVariables.get(0).get(rowNumber - 1));
@@ -189,5 +150,52 @@ public class ACSReader {
       System.out.println("File not found.");
     }
     return tree;
+  }
+  
+  private static County setCountyValues(int rowNumber, List<ArrayList<Integer>> intVariables, List<ArrayList<String>> stringVariables, 
+		  List<ArrayList<Double>> doubleVariables){
+
+	  County node = new County();
+	  
+	  node.setTotalPop(intVariables.get(1).get(rowNumber - 1));
+      node.setMen(intVariables.get(2).get(rowNumber - 1));
+      node.setWomen(intVariables.get(3).get(rowNumber - 1));
+      node.setNumVotingAge(intVariables.get(4).get(rowNumber - 1));
+      node.setIncome(intVariables.get(5).get(rowNumber - 1));
+      node.setIncomeError(intVariables.get(6).get(rowNumber - 1));
+      node.setIncomePerCapita(intVariables.get(7).get(rowNumber - 1));
+      node.setIncomePerCapitaError(intVariables.get(8).get(rowNumber - 1));
+      node.setEmployed(intVariables.get(9).get(rowNumber - 1));
+      // strings
+      node.setState(stringVariables.get(0).get(rowNumber - 1));
+      node.setCountyName(stringVariables.get(1).get(rowNumber - 1));
+      // floats
+      node.setHispanic(doubleVariables.get(0).get(rowNumber - 1));
+      node.setWhite(doubleVariables.get(1).get(rowNumber - 1));
+      node.setBlack(doubleVariables.get(2).get(rowNumber - 1));
+      node.setNativePerson(doubleVariables.get(3).get(rowNumber - 1));
+      node.setAsian(doubleVariables.get(4).get(rowNumber - 1));
+      node.setPacific(doubleVariables.get(5).get(rowNumber - 1));
+      node.setPoverty(doubleVariables.get(6).get(rowNumber - 1));
+      node.setChildPoverty(doubleVariables.get(7).get(rowNumber - 1));
+      node.setProfessional(doubleVariables.get(8).get(rowNumber - 1));
+      node.setService(doubleVariables.get(9).get(rowNumber - 1));
+      node.setOffice(doubleVariables.get(10).get(rowNumber - 1));
+      node.setConstruction(doubleVariables.get(11).get(rowNumber - 1));
+      node.setProduction(doubleVariables.get(12).get(rowNumber - 1));
+      node.setDrive(doubleVariables.get(13).get(rowNumber - 1));
+      node.setCarpool(doubleVariables.get(14).get(rowNumber - 1));
+      node.setTransit(doubleVariables.get(15).get(rowNumber - 1));
+      node.setWalk(doubleVariables.get(16).get(rowNumber - 1));
+      node.setOtherTransport(doubleVariables.get(17).get(rowNumber - 1));
+      node.setWorkAtHome(doubleVariables.get(18).get(rowNumber - 1));
+      node.setMeanCommute(doubleVariables.get(19).get(rowNumber - 1));
+      node.setPrivateWork(doubleVariables.get(20).get(rowNumber - 1));
+      node.setPublicWork(doubleVariables.get(21).get(rowNumber - 1));
+      node.setSelfEmployed(doubleVariables.get(22).get(rowNumber - 1));
+      node.setFamilyWork(doubleVariables.get(23).get(rowNumber - 1));
+      node.setUnemployed(doubleVariables.get(24).get(rowNumber - 1));
+      
+      return node;
   }
 }
